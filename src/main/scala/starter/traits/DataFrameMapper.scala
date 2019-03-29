@@ -1,11 +1,11 @@
 package starter.traits
 
-/** Trait to define how data should be mappped
+/** Trait to define how to map a dataframe (usually for group bys)
   *
-  * @tparam Input  - type of input data
-  * @tparam Output - type of data returned after mapping has been applied
+  * @tparam Input  - Type of input data
+  * @tparam Output - Type of data t be returned
   */
-trait Mapper[Input, Output] {
+trait DataFrameMapper[Input, Output] {
 
   /** Function that will map data
     *

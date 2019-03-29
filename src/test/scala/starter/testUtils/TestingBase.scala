@@ -45,6 +45,12 @@ trait TestingBase extends FunSuite
     spark.sql(s"drop table $tableName")
   }
 
+  override def afterAll() {
+    super.afterAll()
+    spark.stop()
+    deleteTempHiveDir()
+  }
+
   private def deleteTempHiveDir() {
     val dirPath = "/tmp/hive"
     info("deleting temp directroy")
@@ -52,12 +58,6 @@ trait TestingBase extends FunSuite
     val result: Try[Boolean] = Try(path.deleteRecursively)
     if (result.isSuccess) debug(s"$dirPath deleted")
     else info(s"$dirPath already deleted")
-  }
-
-  override def afterAll() {
-    super.afterAll()
-    spark.stop()
-    deleteTempHiveDir()
   }
 
 
